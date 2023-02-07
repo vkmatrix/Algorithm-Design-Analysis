@@ -1,0 +1,50 @@
+#include<stdio.h>
+int a[]={11,61,33,16},n=4,max,min,max1,min1,mid;
+void MaxMin(int i,int j)
+{
+	if(i==j)
+	{
+		max=min=a[i];
+	}
+	else
+	{
+		if(i==j-1)
+		{
+			if(a[i]<a[j])
+			{
+				max=a[j];
+				min=a[i];
+			}
+			else
+			{
+				max=a[i];
+				min=a[j];
+			}
+		}
+		else
+		{
+			mid=(i+j)/2;
+			MaxMin(i,mid);
+			max1=max;
+			min1=min;
+			MaxMin(mid+1,j);
+			if(max<max1)
+			{
+				max=max1;
+			}
+			if(min>min1)
+			{
+				min=min1;
+			}
+		}
+	}
+}
+int main()
+{
+	max=a[0];
+	min=a[0];
+	MaxMin(0,n-1);
+	printf("max--->%d\n",max);
+	printf("min--->%d\n",min);
+	return 0;
+}
